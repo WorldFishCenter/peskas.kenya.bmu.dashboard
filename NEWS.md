@@ -1,4 +1,4 @@
-# peskas-next 2.5.1
+# peskas.kenya.bmu.dashboard 2.5.1
 
 ## Enhancements
 - Enhanced BMU name normalization for consistent data handling and visualization
@@ -11,7 +11,7 @@
 ---
 
 
-# peskas-next 2.5.0
+# peskas.kenya.bmu.dashboard 2.5.0
 
 ## Enhancements
 - Updated living wage references in analytics components and translations for improved accuracy and clarity
@@ -23,7 +23,7 @@
 
 ---
 
-# peskas-next 2.4.0
+# peskas.kenya.bmu.dashboard 2.4.0
 
 ## New features
 - Implemented comprehensive user authentication tracking and session management (#28, #29)
@@ -37,7 +37,7 @@
 
 ---
 
-# peskas-next 2.3.0
+# peskas.kenya.bmu.dashboard 2.3.0
 
 ## New features
 - Implemented AIA (Administrative Information Access) user role support with dedicated dashboard components
@@ -54,7 +54,7 @@
 
 ---
 
-# peskas-next 2.2.0
+# peskas.kenya.bmu.dashboard 2.2.0
 
 ## New features
 - Implemented FileStatsAdmin component for admin-specific dashboard views (#27)
@@ -81,7 +81,7 @@
 
 ---
 
-# peskas-next 2.1.0
+# peskas.kenya.bmu.dashboard 2.1.0
 
 ## New features
 - Implemented optimized FilterSelector component with improved logic (#24, #25)
@@ -101,7 +101,7 @@
 
 ---
 
-# peskas-next 2.0.0
+# peskas.kenya.bmu.dashboard 2.0.0
 
 ## New features
 - Integrated comprehensive individual fisher data throughout the application (#20, #21, #22, #23)
@@ -134,7 +134,7 @@
 
 ---
 
-# peskas-next 1.2.0
+# peskas.kenya.bmu.dashboard 1.2.0
 
 ## New features
 - Implemented baseline comparisons and time range filtering (#19)
@@ -159,7 +159,7 @@
 
 ---
 
-# peskas-next 1.1.0
+# peskas.kenya.bmu.dashboard 1.1.0
 
 ## New features
 - Implemented comprehensive internationalization (i18n) support with English and Swahili locales (#7)
@@ -183,7 +183,7 @@
 
 ---
 
-# peskas-next 1.0.0
+# peskas.kenya.bmu.dashboard 1.0.0
 
 ## New features
 - Integrated real MongoDB data across all dashboard components
@@ -222,7 +222,7 @@
 
 ---
 
-# peskas-next 0.6.0
+# peskas.kenya.bmu.dashboard 0.6.0
 
 ## New features
 - Added About page with detailed Peskas Kenya information
@@ -249,7 +249,7 @@
 
 ---
 
-# peskas-next 0.5.0
+# peskas.kenya.bmu.dashboard 0.5.0
 
 ## New features
 - Implemented NextAuth.js authentication with JWT strategy (#1)
@@ -278,7 +278,7 @@
 
 ---
 
-# peskas-next 0.4.0
+# peskas.kenya.bmu.dashboard 0.4.0
 
 ## New features
 - Implemented Global Filter Selector component (#3)
@@ -299,7 +299,7 @@
 
 ---
 
-# peskas-next 0.3.0
+# peskas.kenya.bmu.dashboard 0.3.0
 
 ## New features
 - Implemented MongoDB API integration with real data collections
@@ -323,7 +323,7 @@
 
 ---
 
-# peskas-next 0.2.0
+# peskas.kenya.bmu.dashboard 0.2.0
 
 ## New features
 - Added GPS trackers DeckGL map visualization with interactive controls
@@ -348,7 +348,7 @@
 
 ---
 
-# peskas-next 0.1.0
+# peskas.kenya.bmu.dashboard 0.1.0
 
 ## New features
 - Initial project setup with Next.js 14.2.3 and Turborepo monorepo structure

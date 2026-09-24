@@ -1,144 +1,78 @@
-## About the Project
+# Peskas Kenya BMU dashboard
 
-The dashboard implements a two-year research study evaluating the effects of digital information on behavior change in small-scale reef fisheries. The study uses a Before-After-Control-Impact (BACI) approach across 35 accessible landing sites in Kenya's 5 coastal counties, organized into Beach Management Units (BMUs).
+A dashboard that shows fishers and Beach Management Units at study sites on the Kenyan coast their own catch, earnings and fishing data.
 
-### Key Features
+Live at https://digitalfisheries.kenya.peskas.org (sign-in required).
 
-- **Multi-level Information Access**: Five treatment groups with varying levels of data access (Control, Individual, Community, Individual+Community, Neighborhood)
-- **Comprehensive Metrics Tracking**: CPUE, IPUE, catch volumes, fishing effort, costs, profit, gear performance
-- **Role-based Dashboards**: Tailored views for different user groups (IIA, CIA, AIA, WBCIA, Admin)
-- **Bilingual Support**: Full internationalization with English and Swahili
-- **Real-time Analytics**: Interactive charts and visualizations for fisheries data
-- **Behavioral Research Framework**: Tests Knowledge-Attitude-Practice (KAP) model effectiveness
+## What it is
 
-### Research Purpose
+The dashboard is for fishers and Beach Management Unit (BMU) leaders at 35 landing sites in five coastal counties of Kenya: Kilifi, Kwale, Lamu, Mombasa and Tana River. It is part of a two-year study by the Wildlife Conservation Society (WCS) and WorldFish that tests whether giving fishers and their communities their own data changes how they fish and manage their fishery. It is available in English and Swahili. There is no public sign-up: an administrator creates each account and decides what it can see. If you forget your password, use "Forgot password" on the sign-in page.
 
-The study addresses challenges of sustainable fisheries management by testing three behavioral models:
-- Information Deficit Model
-- Self-Interested Actor Model
-- Neighborhood Interested Actor Model
+## What you can do
 
-Results will inform governments and conservation organizations on balancing ecological sustainability with community needs through digital information tools.
+- See your own catch rate, revenue, costs and profit month by month, if you are an individual fisher.
+- See your BMU's monthly fishing effort, catch rate, revenue, costs and profit, compared with recommended levels.
+- See which fishing gears are used and how well each one performs.
+- See which kinds of fish make up the catch.
+- Compare BMUs with each other, if your account has access to more than one.
 
-## Technology Stack
+## Where the data comes from
 
-This monorepo is powered by [Turborepo](https://turbo.build/), using modern web technologies:
-- **Framework**: Next.js 14.2.3 with App Router
-- **Database**: MongoDB with Mongoose ODM
-- **API**: tRPC for type-safe client-server communication
-- **Auth**: NextAuth.js with JWT strategy
-- **UI**: React 18, Tailwind CSS, Recharts, Deck.gl
-- **i18n**: react-i18next (English and Swahili)
+Enumerators on the WCS landing survey record catches at the study sites with KoboToolbox. The [Peskas Kenya data pipeline](https://github.com/WorldFishCenter/peskas.kenya.data.pipeline) checks those records, keeps the validated ones from 2023 onwards, works out monthly figures for each BMU and each fisher, and loads them into the dashboard every 2 days. The figures are as recent as the last pipeline run; they are not live.
 
-## Getting Started
+- **BMU (Beach Management Unit)**: the community body that manages a landing site in Kenya.
+- **Landing**: a boat's return to shore with its catch, recorded by an enumerator.
+- **Enumerator**: a trained data collector who records landings at landing sites.
+- **KoboToolbox**: the free mobile survey app enumerators use to record landings.
+- **Catch rate (CPUE, catch per unit of effort)**: kilograms of fish caught per fisher per day.
+- **Revenue per fisher (RPUE)**: value of the catch per fisher per day, in Kenyan shillings (KES).
+- **Profit**: revenue per fisher minus fishing trip costs per fisher, per day, in KES.
 
-System Requirements:
+## Who runs it
 
-- [Node.js 18.17](https://nodejs.org/en) or later.
-- [Turborepo 2.0.1](https://turbo.build/repo/docs/getting-started/installation)
-- [pnpm - package manager 9.1.4](https://pnpm.io/installation#using-npm) (recommended). We used this version. But you can change it as you want. Learn more about [Turborepo packageManager](https://turbo.build/repo/docs/getting-started/support-policy)
+The dashboard was built and is run by WCS (Mombasa, Kenya) and WorldFish. For questions, write to <peskas.platform@gmail.com>.
 
-**Tuborepo**: For quick install just run the following command it will install turbo in your system globally.
+## Part of Peskas
 
-```bash
-npm install -g turbo
-```
+Peskas is WorldFish's open-source platform for monitoring small-scale fisheries (https://peskas.org).
 
-## Starting development server
+- [Peskas Zanzibar](https://zanzibar.peskas.org), [Peskas Kenya](https://peskas-dashboard-kenya.vercel.app/en), [Peskas Mozambique](https://peskas-dashboard-mozambique.vercel.app): country dashboards
+- [Peskas Timor-Leste](https://timor.peskas.org): Timor-Leste portal
+- [Peskas Coasts](https://coasts.peskas.org): regional comparison across countries
+- [Peskas Tracks](https://tracks.peskas.org): app for fishers to see their trips and log catches
+- [Peskas Management Platform](https://validation.peskas.org): data review and download for survey teams
+- [Peskas Fishery Data API](https://api.peskas.org/docs): programmatic access to landing data
+- Data pipelines: [Kenya](https://github.com/WorldFishCenter/peskas.kenya.data.pipeline), [Zanzibar](https://github.com/WorldFishCenter/peskas.zanzibar.data.pipeline), [Mozambique](https://github.com/WorldFishCenter/peskas.mozambique.data.pipeline), [Timor-Leste](https://github.com/WorldFishCenter/peskas.timor.data.pipeline), [Coasts](https://github.com/WorldFishCenter/peskas.coasts)
 
-To start the development server locally run the following commands
+## For developers
+
+A pnpm + Turborepo monorepo built on the Isomorphic Next.js template: Next.js 15, tRPC, Mongoose (MongoDB) and NextAuth.
+
+- `apps/isomorphic-i18n` (package `i18n`) is the product. `apps/isomorphic` and `apps/isomorphic-starter` are leftovers from the template; do not use them for product work.
+- `packages/api`: tRPC routers. `packages/nosql`: Mongoose schemas for the collections the Kenya pipeline writes (`export_summaries()`) to the MongoDB database `app` (`app-dev` for development). A change to those collections is a change to the pipeline too. `packages/isomorphic-core`: shared UI.
+
+### Setup
+
+Requirements: Node.js 18.18 or later, pnpm 9 (Turborepo is installed with the project).
 
 ```bash
 pnpm install
-
-pnpm run dev
-
+cp apps/isomorphic-i18n/.env.local.example apps/isomorphic-i18n/.env.local   # then fill it in
+pnpm run i18n:dev                                                             # http://localhost:3001
 ```
 
-To build locally and view the local build run the following commands.
+[apps/isomorphic-i18n/.env.local.example](apps/isomorphic-i18n/.env.local.example) covers sign-in (`NEXTAUTH_SECRET`, `NEXTAUTH_URL`) and Google keys. Also set `MONGODB_URI` (a connection string to the `app-dev` database) and, for password-reset emails, `EMAIL_SERVER` and `EMAIL_FROM`.
 
-```bash
-pnpm run build
+### Main commands
 
-pnpm run start
+- `pnpm run i18n:dev`, `pnpm run i18n:build`, `pnpm run i18n:start`, `pnpm run i18n:lint`: the product app. The root `pnpm run dev` and `pnpm run build` run every app, template leftovers included.
+- `pnpm --filter i18n test` and `pnpm --filter @isomorphic/api test`: a few unit tests (BMU name matching). Lint and build are the main checks.
+- Every user-facing string goes into both `en` and `sw` under `apps/isomorphic-i18n/src/app/i18n/locales/`.
 
-```
+### Production and releases
 
-**You can find more commands in the project root `package.json` file.**
+The app is hosted on Vercel and reads the production `app` database, which the Kenya pipeline refreshes every 2 days. To release, add a `# peskas.kenya.bmu.dashboard X.Y.Z` block at the top of [NEWS.md](NEWS.md); a push to `dev` turns it into a GitHub release ([.github/workflows/release.yaml](.github/workflows/release.yaml)). [CONTRIBUTING.md](CONTRIBUTING.md) has the step-by-step version.
 
-## Project Structure
+### AI-assisted work
 
-```
-peskas-next/
-├── apps/
-│   ├── isomorphic-i18n/      # Main production application (port 3001)
-│   ├── isomorphic/           # Base dashboard without i18n
-│   └── isomorphic-starter/   # Minimal starter template
-├── packages/
-│   ├── api/                  # tRPC API routers (@isomorphic/api)
-│   ├── isomorphic-core/      # Shared UI components (@isomorphic/core)
-│   ├── nosql/                # MongoDB schemas and models (@repo/nosql)
-│   └── config-*/             # Shared configurations
-├── NEWS.md                   # Project changelog
-├── CONTRIBUTING.md           # Contribution guidelines
-└── turbo.json               # Turborepo configuration
-```
-
-### Main Application Architecture
-
-The `isomorphic-i18n` app implements a sophisticated role-based access control (RBAC) system:
-
-- **IIA (Individual Information Access)**: Individual fishers - personal fishing data only
-- **CIA (Community Information Access)**: BMU-level managers - aggregated catch data for their BMU
-- **AIA (Administrative Information Access)**: Administrative users - BMU-level administrative metrics
-- **WBCIA (Whole BMU Community Information Access)**: Regional managers - multi-BMU data access
-- **Admin**: Full system access with all BMU data and user management
-
-Each role has tailored dashboard components and data access patterns aligned with the research study's experimental design.
-
-## Documentation
-
-- [CONTRIBUTING.md](CONTRIBUTING.md) - Development guidelines and release process
-- [NEWS.md](NEWS.md) - Complete project changelog
-- [Turborepo Documentation](https://turbo.build/repo/docs/handbook)
-
-Happy coding! 🎣
-
-## Release Process
-
-This project uses automated releases via GitHub Actions. When you push to the `dev` branch:
-
-1. The workflow extracts the version from `NEWS.md`
-2. Checks if a git tag for that version already exists
-3. If the tag doesn't exist, creates a GitHub Release with the changelog
-
-### Creating a New Release
-
-1. Update `NEWS.md` with your changes at the top of the file:
-   ```markdown
-   # peskas-next X.Y.Z
-
-   ## New features
-   - Your new feature
-
-   ## Enhancements
-   - Your enhancements
-
-   ## Fixes
-   - Your bug fixes
-
-   ---
-   ```
-
-2. Commit and push to `dev`:
-   ```bash
-   git add NEWS.md
-   git commit -m "Release version X.Y.Z"
-   git push origin dev
-   ```
-
-3. The GitHub Action will automatically:
-   - Create a git tag `vX.Y.Z`
-   - Create a GitHub Release with the changelog
-
-See [NEWS.md](NEWS.md) for the complete changelog and [CONTRIBUTING.md](CONTRIBUTING.md) for detailed contribution guidelines.
+[CLAUDE.md](CLAUDE.md) and `.claude/rules/` hold the conventions and known traps.

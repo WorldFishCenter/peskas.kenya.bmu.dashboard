@@ -247,7 +247,7 @@ export const userRouter = createTRPCRouter({
         subject: "Reset your password",
         resetLink: `${
           process.env.NODE_ENV === 'production'
-            ? 'https://peskas-next-umber.vercel.app'
+            ? 'https://digitalfisheries.kenya.peskas.org'
             : process.env.NEXT_PUBLIC_URL ?? 'http://localhost:3001'
         }/en/reset-password/${reset_token}`,
       });

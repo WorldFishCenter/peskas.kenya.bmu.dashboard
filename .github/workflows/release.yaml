@@ -19,7 +19,7 @@ jobs:
       - name: Extract version from NEWS.md
         id: extract_version
         run: |
-          VERSION=$(grep -m 1 "^# peskas-next" NEWS.md | sed 's/# peskas-next //')
+          VERSION=$(grep -m 1 "^# peskas\.kenya\.bmu\.dashboard " NEWS.md | sed 's/^# peskas\.kenya\.bmu\.dashboard //')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "Extracted version: $VERSION"
 
@@ -28,7 +28,7 @@ jobs:
         run: |
           # Extract the first version block from NEWS.md
           # This gets everything between the first version header and the next "---" separator
-          CHANGELOG=$(awk '/^# peskas-next [0-9]/{flag=1; next} /^---$/{flag=0} flag' NEWS.md)
+          CHANGELOG=$(awk '/^# peskas\.kenya\.bmu\.dashboard [0-9]/{flag=1; next} /^---$/{flag=0} flag' NEWS.md)
 
           # Save to file to preserve formatting
           echo "$CHANGELOG" > changelog.txt
@@ -60,7 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ steps.extract_version.outputs.version }}
-          release_name: peskas-next v${{ steps.extract_version.outputs.version }}
+          release_name: peskas.kenya.bmu.dashboard v${{ steps.extract_version.outputs.version }}
           body_path: changelog.txt
           draft: false
           prerelease: false

@@ -13,6 +13,6 @@ export const config = {
   matcher: [
     '/',
     '/sign-in',
-    '/(en|de|es|ar|he|zh)/:path*',
+    '/(en|sw|de|es|ar|he|zh)/:path*',
   ],
 };

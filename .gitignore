@@ -17,7 +17,6 @@ build
 # misc
 .DS_Store
 *.pem
-CLAUDE.md
 
 # debug
 npm-debug.log*
@@ -43,3 +42,6 @@ dist/
 # local env files
 .env*
 !.env.example
+# Claude Code (personal)
+.claude/settings.local.json
+CLAUDE.local.md
