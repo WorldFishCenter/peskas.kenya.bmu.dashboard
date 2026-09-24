@@ -1,6 +1,7 @@
 import { useSession } from "next-auth/react";
 import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
+import { useCallback } from 'react';
 
 // Create an atom to store the admin's selected reference BMU
 export const adminReferenceBmuAtom = atomWithStorage<string | null>('adminReferenceBmu', null);
@@ -55,7 +56,7 @@ export const useUserPermissions = () => {
    * @param allBMUs - Array of all available BMUs
    * @returns Array of BMUs the user has access to
    */
-  const getAccessibleBMUs = (allBMUs: string[]): string[] => {
+  const getAccessibleBMUs = useCallback((allBMUs: string[]): string[] => {
     if (isAdmin) {
       // Admins can see all BMUs
       return allBMUs;
@@ -73,7 +74,7 @@ export const useUserPermissions = () => {
       // Default fallback - show all but with limited interactions
       return allBMUs;
     }
-  };
+  }, [isAdmin, isWbciaUser, isCiaUser, isAiaUser, isIiaUser, userBMU]);
   
   /**
    * Get a limited selection of BMUs to display for admins
@@ -82,7 +83,7 @@ export const useUserPermissions = () => {
    * @param limit - Maximum number of BMUs to return
    * @returns Limited array of BMUs for visualization
    */
-  const getLimitedBMUs = (allBMUs: string[], limit: number = 8): string[] => {
+  const getLimitedBMUs = useCallback((allBMUs: string[], limit: number = 8): string[] => {
     if (!isAdmin) {
       return getAccessibleBMUs(allBMUs);
     }
@@ -103,7 +104,7 @@ export const useUserPermissions = () => {
     }
     
     return result;
-  };
+  }, [isAdmin, adminReferenceBmu, getAccessibleBMUs]);
   
   // Detect if user is an administrator who is also an active fisher
   const isAdminFisher = (isWbciaUser || isCiaUser || isAdmin) && !!userFisherId;

@@ -93,7 +93,7 @@ export function FileStatWBCIAGrid({ className, lang }: { className?: string; lan
   const { userBMU, shouldShowIndividualData, userFisherId } = useUserPermissions();
   
   // Ensure bmus is always an array
-  const safeBmus = bmus || [];
+  const safeBmus = useMemo(() => bmus || [], [bmus]);
   
   // Calculate date range for individual data
   const dateRange = useMemo(() => {
@@ -269,7 +269,7 @@ export function FileStatWBCIAGrid({ className, lang }: { className?: string; lan
       console.error("Error transforming data:", error);
       return null;
     }
-  }, [monthlyData, metrics, safeBmus, userBMU, shouldShowIndividualData, userFisherId, fisherData]);
+  }, [monthlyData, metrics, safeBmus, userBMU, shouldShowIndividualData, userFisherId, fisherData, t]);
 
   // Update state based on processed data
   useEffect(() => {

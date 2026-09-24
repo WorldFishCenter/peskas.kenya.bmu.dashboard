@@ -214,7 +214,7 @@ export function FileStatGrid({ className, lang, bmu }: { className?: string; lan
       console.error("Error transforming data:", error);
       return null;
     }
-  }, [monthlyData, metrics, effectiveBMU, shouldShowIndividualData, userFisherId, fisherData]);
+  }, [monthlyData, metrics, effectiveBMU, shouldShowIndividualData, userFisherId, fisherData, t]);
 
   // Update state based on processed data
   useEffect(() => {

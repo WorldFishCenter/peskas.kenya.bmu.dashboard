@@ -1,5 +1,4 @@
-import type { NextFetchEvent, NextMiddleware, NextRequest } from "next/server";
-import { NextResponse } from "next/server";
+import { NextResponse, type NextFetchEvent, type NextMiddleware, type NextRequest } from "next/server";
 
 import type { MiddlewareFactory } from "./types"
 import { JWT_COOKIE_NAME } from "./const"

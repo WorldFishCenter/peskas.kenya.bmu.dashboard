@@ -163,7 +163,7 @@ export function FileStatGridAIA({ className, lang, bmu }: { className?: string; 
       console.error("Error transforming data:", error);
       return null;
     }
-  }, [monthlyData, metrics, effectiveBMU]);
+  }, [monthlyData, metrics, effectiveBMU, t]);
 
   // Update state based on processed data
   useEffect(() => {

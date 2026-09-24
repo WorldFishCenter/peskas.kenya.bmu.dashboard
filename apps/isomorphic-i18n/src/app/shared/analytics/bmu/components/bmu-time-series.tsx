@@ -325,11 +325,11 @@ export default function CatchMetricsChart({
   } | null>(null);
 
   // Map old tab names to new ones for backwards compatibility
-  const getNewTabName = (oldTab: string) => {
+  const getNewTabName = useCallback((oldTab: string) => {
     if (oldTab === 'standard') return 'trends';
     if (oldTab === 'recent') return 'comparison';
     return oldTab;
-  };
+  }, []);
 
   // Initialize with mapped value to handle both old and new tab names
   const [localActiveTab, setLocalActiveTab] = useState(() => getNewTabName(activeTab));
@@ -516,7 +516,7 @@ export default function CatchMetricsChart({
     } finally {
       setLoading(false);
     }
-  }, [monthlyData, selectedMetric, bmu, selectedTimeRange]);
+  }, [monthlyData, selectedMetric, bmu, selectedTimeRange, isCiaUser, localActiveTab]);
 
   const CustomLegend = ({ payload }: any) => {
     // Filter out the auto-generated average entry from the payload

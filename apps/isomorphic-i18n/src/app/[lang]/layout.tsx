@@ -1,6 +1,6 @@
-import dynamic from "next/dynamic";
 import { Toaster } from "react-hot-toast";
 import { getServerSession } from "next-auth/next";
+import NextProgress from "@components/next-progress";
 import { authOptions } from "@/app/api/auth/[...nextauth]/auth-options";
 import AuthProvider from "@/app/api/auth/[...nextauth]/auth-provider";
 import GlobalDrawer from "@/app/shared/drawer-views/container";
@@ -18,10 +18,6 @@ import UserAnalyticsTracker from "../_components/user-analytics-tracker";
 import UsageTracker from "../_components/usage-tracker";
 import ModalSwitcher from "@/app/_components/modal/modal-switcher";
 
-const NextProgress = dynamic(() => import("@components/next-progress"), {
-  ssr: false,
-});
-
 export const metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
@@ -33,11 +29,12 @@ export async function generateStaticParams() {
 
 export default async function RootLayout({
   children,
-  params: { lang },
+  params,
 }: {
   children: React.ReactNode;
-  params: any;
+  params: Promise<{ lang: string }>;
 }) {
+  const { lang } = await params;
   const session = await getServerSession(authOptions);
   return (
     <html lang={lang} dir={dir(lang)} suppressHydrationWarning>

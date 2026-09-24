@@ -18,6 +18,7 @@
     "paths": {
       "@/*": ["src/*"],
       "@public/*": ["public/*"],
+      "@ui/quill-editor": ["src/ui/quill-editor"],
       "@ui/*": ["../../packages/isomorphic-core/src/ui/*"],
       "@components/*": ["../../packages/isomorphic-core/src/components/*"],
       "@hooks/*": ["../../packages/isomorphic-core/src/hooks/*"],

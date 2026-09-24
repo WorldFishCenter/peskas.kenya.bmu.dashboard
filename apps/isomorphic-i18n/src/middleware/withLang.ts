@@ -1,5 +1,4 @@
-import type { NextFetchEvent, NextMiddleware, NextRequest } from "next/server"
-import { NextResponse } from "next/server"
+import { NextResponse, type NextFetchEvent, type NextMiddleware, type NextRequest } from "next/server"
 
 import { fallbackLng, languages } from "@/app/i18n/settings";
 import type { MiddlewareFactory } from "./types";

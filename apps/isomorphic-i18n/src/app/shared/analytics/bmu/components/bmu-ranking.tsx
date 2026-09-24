@@ -245,7 +245,7 @@ export default function BMURanking({
   const effectiveBMU = bmu || referenceBMU || userBMU;
 
   // Ensure bmus is always an array
-  const safeBmus = bmus || [];
+  const safeBmus = useMemo(() => bmus || [], [bmus]);
 
   // Calculate date range based on selected time range for individual data
   const dateRange = useMemo(() => {

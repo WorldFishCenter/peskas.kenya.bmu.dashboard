@@ -17,11 +17,12 @@
     "@repo/nosql": "workspace:*",
     "@trpc/server": "11.0.0-next-beta.264",
     "bcryptjs": "^2.4.3",
-    "handlebars": "^4.7.8",
-    "lodash": "^4.17.21",
-    "mongoose": "^8.7.1",
-    "next-auth": "^4.24.7",
-    "nodemailer": "^6.9.13",
+    "handlebars": "^4.7.9",
+    "lodash": "^4.18.0",
+    "mongoose": "^8.9.5",
+    "next": "15.5.23",
+    "next-auth": "^4.24.15",
+    "nodemailer": "^9.0.5",
     "superjson": "2.2.1",
     "trpc-openapi": "^1.2.0",
     "zod": "^3.22.4"
@@ -29,9 +30,9 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/lodash": "^4.17.1",
-    "@types/nodemailer": "^6.4.15",
+    "@types/nodemailer": "^8.0.1",
     "prettier": "^3.2.5",
     "typescript": "^5.3.3",
-    "vitest": "2.1.9"
+    "vitest": "^3.2.6"
   }
 }

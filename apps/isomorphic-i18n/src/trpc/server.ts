@@ -11,7 +11,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/auth-options";
  * handling a tRPC call from a React Server Component.
  */
 const createContext = cache(async () => {
-  const heads = new Headers(headers());
+  const heads = new Headers(await headers());
   heads.set('x-trpc-source', 'rsc');
 
   return createTRPCContext({

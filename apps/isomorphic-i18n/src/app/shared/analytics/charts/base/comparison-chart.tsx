@@ -250,7 +250,7 @@ export default function ComparisonChart({
         individualFisher: fisherValue
       };
     });
-  }, [chartData, individualFisherChartData, isCiaHistoricalMode, hasNewDataFormat, selectedMetric]);
+  }, [chartData, individualFisherChartData, isCiaHistoricalMode, selectedMetric]);
   
   // Format date for X-axis ticks
   const formatDate = (timestamp: number) => {

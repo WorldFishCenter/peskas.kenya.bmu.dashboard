@@ -117,7 +117,7 @@ export default function FishCompositionAreaChart({
     
     // For others, show all selected BMUs
     return bmus;
-  }, [isAdmin, hasRestrictedAccess, effectiveBMU, bmus]);
+  }, [isAdmin, hasRestrictedAccess, effectiveBMU, bmus, getLimitedBMUs]);
   
   // Memoize the API query to prevent re-fetching on every render
   const fishDistributionQuery = api.fishDistribution.monthlyTrends.useQuery({ 
@@ -188,16 +188,18 @@ export default function FishCompositionAreaChart({
     setChartMode(mode);
   };
   
+  const visibilityKeyCount = Object.keys(visibilityState).length;
+
   // Memoize the initialization of visibility state to prevent it from changing on each render
   useEffect(() => {
-    if (categoryDisplays.length > 0 && Object.keys(visibilityState).length === 0) {
+    if (categoryDisplays.length > 0 && visibilityKeyCount === 0) {
       const initialVisibility: VisibilityState = {};
       categoryDisplays.forEach(category => {
         initialVisibility[category.id] = { opacity: 1 };
       });
       setVisibilityState(initialVisibility);
     }
-  }, [categoryDisplays.length, Object.keys(visibilityState).length]);
+  }, [categoryDisplays, visibilityKeyCount]);
   
   // Process data when it changes
   useEffect(() => {

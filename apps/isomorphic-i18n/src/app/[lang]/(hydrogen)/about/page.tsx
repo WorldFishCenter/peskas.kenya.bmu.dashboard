@@ -33,11 +33,12 @@ function SectionBlock({
   );
 }
 
-export default function AboutPage({
-  params: { lang },
+export default async function AboutPage({
+  params,
 }: {
-  params: { lang?: string };
+  params: Promise<{ lang?: string }>;
 }) {
+  await params;
   return (
     <>
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb} />

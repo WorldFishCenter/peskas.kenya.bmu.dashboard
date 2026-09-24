@@ -1,11 +1,12 @@
 import AuthWrapperOne from '@/app/shared/auth-layout/auth-wrapper-one';
 import ForgetPasswordForm from './forgot-password-form';
 
-export default function ForgotPassword({
-  params: { lang },
+export default async function ForgotPassword({
+  params,
 }: {
-  params: { lang?: string };
+  params: Promise<{ lang?: string }>;
 }) {
+  const { lang } = await params;
   return (
     <AuthWrapperOne
       title={

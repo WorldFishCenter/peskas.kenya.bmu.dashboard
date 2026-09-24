@@ -1,16 +1,16 @@
 'use client';
+import { use } from 'react';
 import { useIsMounted } from '@hooks/use-is-mounted';
 import LithiumLayout from '@/layouts/lithium/lithium-layout';
 
 export default function DefaultLayout({
   children,
-  params: { lang },
+  params,
 }: {
   children: React.ReactNode;
-  params: {
-    lang: string;
-  };
+  params: Promise<{ lang: string }>;
 }) {
+  const { lang } = use(params);
   const isMounted = useIsMounted();
 
   if (!isMounted) {

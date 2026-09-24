@@ -45,7 +45,12 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
             (op.direction === "down" && op.result instanceof Error),
         }),
         httpBatchLink({
-          maxURLLength: 750,
+          // Queries taking the full BMU list are ~700 chars of GET query string before
+          // the origin is prepended, so on long preview hostnames tRPC's dataLoader
+          // rejected them client-side ("Input is too big for a single dispatch") and
+          // never sent them. ponytail: raising the ceiling; the real shrink is deriving
+          // the BMU scope from the session server-side instead of shipping 35 names.
+          maxURLLength: 4000,
           transformer: SuperJSON,
           url: getBaseUrl() + "/api/trpc",
           async headers() {

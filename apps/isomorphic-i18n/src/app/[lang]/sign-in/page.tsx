@@ -6,11 +6,12 @@ export const metadata = {
   ...metaObject('Sign In'),
 };
 
-export default function SignIn({
-  params: { lang },
+export default async function SignIn({
+  params,
 }: {
-  params: { lang?: string };
+  params: Promise<{ lang?: string }>;
 }) {
+  const { lang } = await params;
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-gray-50">
       {/* Optional: Background Image with blur effect */}

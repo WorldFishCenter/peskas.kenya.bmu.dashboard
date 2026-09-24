@@ -100,7 +100,7 @@ export default function IndividualFishCompositionComparison({
     }
     // Return only user's row if they can't compare, otherwise return both
     return canCompareWithOthers ? [youRow, othersRow] : [youRow];
-  }, [filteredData, userFisherId, canCompareWithOthers, availableFishCategories]);
+  }, [filteredData, userFisherId, canCompareWithOthers, availableFishCategories, t]);
 
   // Legend and color mapping - only available categories
   const categoryDisplays = availableFishCategories.map(cat => ({
@@ -124,6 +124,8 @@ export default function IndividualFishCompositionComparison({
       initialVisibility[category.id] = { opacity: 1 };
     });
     setVisibilityState(initialVisibility);
+    // categoryDisplays is rebuilt each render; length is the stable signal we care about
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- categoryDisplays identity would infinite-loop
   }, [categoryDisplays.length]);
 
   const handleLegendClick = (categoryId: string) => {

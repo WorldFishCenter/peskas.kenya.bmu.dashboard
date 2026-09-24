@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo } from "react";
+import { use, useState, useMemo } from "react";
 import { useAtom } from "jotai";
 import { useTranslation } from "@/app/i18n/client";
 import type { DefaultSession } from "next-auth";
@@ -33,13 +33,13 @@ type CustomSession = {
 
 // Fix for Next.js 14: Use proper param typing for app router pages
 interface PageProps {
-  params: {
+  params: Promise<{
     lang: string;
-  };
+  }>;
 }
 
 export default function CatchCompositionPage({ params }: PageProps) {
-  const lang = params.lang;
+  const { lang } = use(params);
   // Use the same state management pattern as the homepage FileDashboard
   const [selectedCategory, setSelectedCategory] = useState<string>("Octopus");
   const [activeTab, setActiveTab] = useState("trends");

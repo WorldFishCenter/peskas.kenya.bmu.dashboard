@@ -1,11 +1,12 @@
 import AuthWrapperOne from '@/app/shared/auth-layout/auth-wrapper-one';
 import ResetPasswordForm from './reset-password-form';
 
-export default function ForgotPassword({
-  params: { lang, token },
+export default async function ResetPasswordPage({
+  params,
 }: {
-  params: { lang?: string, token: string };
+  params: Promise<{ lang?: string; token: string }>;
 }) {
+  const { lang, token } = await params;
   return (
     <AuthWrapperOne
       title={

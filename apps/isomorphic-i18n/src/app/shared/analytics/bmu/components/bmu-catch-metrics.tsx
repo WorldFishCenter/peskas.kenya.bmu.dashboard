@@ -821,7 +821,11 @@ export default function CatchMetricsChart({
     } finally {
       setLoading(false);
     }
-  }, [monthlyData, selectedMetric, effectiveBMU, hasRestrictedAccess, getAccessibleBMUs, safeBmus, isCiaUser, localActiveTab, selectedTimeRange, shouldFetchIndividualData, chartData.length, loading, visibilityState]);
+    // visibilityState is written here and never read; as a dep it feeds the effect its
+    // own output, which spins forever when the metric yields no rows (chartData empty,
+    // so shouldSkipProcessing never trips).
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- visibilityState is write-only here and would infinite-loop
+  }, [monthlyData, selectedMetric, effectiveBMU, hasRestrictedAccess, getAccessibleBMUs, safeBmus, isCiaUser, isAiaUser, localActiveTab, selectedTimeRange, shouldFetchIndividualData, chartData.length, loading]);
 
   // Calculate derived data when chartData changes
   useEffect(() => {

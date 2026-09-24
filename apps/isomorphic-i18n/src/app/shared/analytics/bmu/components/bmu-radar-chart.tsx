@@ -541,7 +541,7 @@ export default function CatchRadarChart({
         visibilityState: {}
       };
     }
-  }, [meanCatch, activeTab, effectiveBMU, hasRestrictedAccess, getAccessibleBMUs, t, isFetching, bmus.length]);
+  }, [meanCatch, activeTab, effectiveBMU, hasRestrictedAccess, getAccessibleBMUs, t, isFetching, bmus.length, fisherData, isMetricCompatibleWithIndividualData, selectedMetric, shouldShowIndividualData]);
 
   // Update state based on memoized processed data
   useEffect(() => {

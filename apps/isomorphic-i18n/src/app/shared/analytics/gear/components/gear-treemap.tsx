@@ -320,6 +320,7 @@ export default function GearHeatmap({
   const previousMetric = useRef<string>(selectedMetric);
   const previousBmus = useRef<string[]>(bmus);
   const previousTimeRangeRef = useRef<string>(selectedTimeRange);
+  const previousIndividualGearDataRef = useRef<unknown>(null);
   
   // Listen for language changes
   useEffect(() => {
@@ -492,16 +493,17 @@ export default function GearHeatmap({
       previousMetric.current !== selectedMetric || 
       previousTimeRangeRef.current !== selectedTimeRange;
     
-    // Also reset if we should fetch individual data but haven't processed it yet, or if individual data has changed
+    // Only treat individual data as "changed" when the query result identity changes
     const individualDataChanged = shouldFetchIndividualGearData && (
-      (!dataProcessed.current) || 
-      (individualGearData && individualGearData.length > 0)
+      !dataProcessed.current ||
+      previousIndividualGearDataRef.current !== individualGearData
     );
     
     if (shouldResetProcessing || individualDataChanged) {
       dataProcessed.current = false;
       previousMetric.current = selectedMetric;
       previousTimeRangeRef.current = selectedTimeRange;
+      previousIndividualGearDataRef.current = individualGearData;
       setLoading(true);
     }
     
@@ -787,7 +789,10 @@ export default function GearHeatmap({
     } finally {
       setLoading(false);
     }
-  }, [rawData, selectedMetric, selectedTimeRange, effectiveBMU, hasRestrictedAccess, isWbciaUser, safeBmus, individualGearData, shouldFetchIndividualGearData, userFisherId, isLoadingIndividualGear, t]);
+    // visibilityState is read for conditional init but must not be a dependency —
+    // this effect writes it, and individualGearData stays truthy so a dep would loop.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- visibilityState would infinite-loop
+  }, [rawData, selectedMetric, selectedTimeRange, effectiveBMU, hasRestrictedAccess, isWbciaUser, isCiaUser, isAiaUser, safeBmus, individualGearData, shouldFetchIndividualGearData, userFisherId, isLoadingIndividualGear, t]);
 
   const getTabTitle = (tab: string): string => {
     // Custom titles for CIA and AIA users who can only see their own BMU

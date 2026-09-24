@@ -9,8 +9,7 @@ import FishCategorySelector from "../../charts/domain/fish-category-selector";
 import SimpleBar from "@ui/simplebar";
 
 // Import chart components from Recharts directly 
-import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
-import { AreaChart, Area } from "recharts";
+import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, CartesianGrid, Tooltip, Legend, AreaChart, Area } from "recharts";
 import { useAtom } from "jotai";
 import { selectedTimeRangeAtom } from "@/app/components/filter-selector";
 import { getTimeRangeStartDate } from "../../core/utils/time-range-filter";
@@ -236,7 +235,7 @@ export default function IndividualFishCompositionUnified({
       initialVisibility[category.id] = { opacity: 1 };
     });
     setVisibilityState(initialVisibility);
-  }, [categoryDisplays.length]);
+  }, [categoryDisplays]);
 
   const handleLegendClick = (categoryId: string) => {
     setVisibilityState(prev => {
@@ -253,7 +252,7 @@ export default function IndividualFishCompositionUnified({
     if (activeTab !== localActiveTab) {
       setLocalActiveTab(activeTab);
     }
-  }, [activeTab]);
+  }, [activeTab, localActiveTab]);
 
   // Ensure selected category is available in the data
   useEffect(() => {
