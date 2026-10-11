@@ -1,9 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import logoImg from '@public/logo-primary.svg';
-import logoImgText from '@public/logo-primary-text.svg';
-import Image from 'next/image';
+import Logo from '@components/logo';
 import { Title, Text, Button } from 'rizzui';
 import { PiAppleLogo, PiArrowLeftBold } from 'react-icons/pi';
 import { FcGoogle } from 'react-icons/fc';
@@ -66,16 +64,8 @@ export default function AuthWrapperOne({
               <b className="ms-1 font-medium">{t('auth-back-to-home')}</b>
             </Link>
             <div className="mb-7 px-6 pt-3 text-center md:pt-0 lg:px-0 lg:text-start xl:mb-8 2xl:mb-10">
-              <Link
-                href={'/'}
-                className="mb-6 inline-flex max-w-[168px] xl:mb-8"
-              >
-                <Image src={logoImg} alt="Isomorphic" />
-                <Image
-                  src={logoImgText}
-                  alt="Isomorphic"
-                  className="ps-2.5 dark:invert"
-                />
+              <Link href={'/'} className="mb-6 inline-flex xl:mb-8">
+                <Logo className="h-8 w-auto" />
               </Link>
               <Title
                 as="h2"

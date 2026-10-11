@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Logo from '@components/logo';
 import SignInForm from '@/app/[lang]/sign-in/sign-in-form';
 import { metaObject } from '@/config/site.config';
 
@@ -29,6 +30,7 @@ export default async function SignIn({
       {/* Login Card */}
       <div className="relative z-10 w-full max-w-md p-6 mx-4 bg-white rounded-xl shadow-lg">
         <div className="mb-8 text-center">
+          <Logo className="mx-auto mb-6 h-8 w-auto" />
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Sign In</h1>
           <p className="text-sm text-gray-500">
             Enter your credentials to access your account

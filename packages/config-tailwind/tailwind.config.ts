@@ -68,6 +68,14 @@ const config: Omit<Config, "content"> = {
           DEFAULT: "rgb(var(--green-default) / <alpha-value>)",
           dark: "rgb(var(--green-dark) / <alpha-value>)",
         },
+        // The Peskas logo's cells, tail (1) to head (4, also the wordmark), and its eye.
+        peskas: {
+          1: "rgb(var(--peskas-1) / <alpha-value>)",
+          2: "rgb(var(--peskas-2) / <alpha-value>)",
+          3: "rgb(var(--peskas-3) / <alpha-value>)",
+          4: "rgb(var(--peskas-4) / <alpha-value>)",
+          eye: "rgb(var(--peskas-eye) / <alpha-value>)",
+        },
       },
       fontFamily: {
         inter: ["var(--font-inter)"],

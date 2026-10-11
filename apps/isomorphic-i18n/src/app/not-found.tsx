@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Title, Button } from 'rizzui';
 import { PiHouseLineBold } from 'react-icons/pi';
 import SocialItems from '@ui/social-shares';
-import { siteConfig } from '@/config/site.config';
+import Logo from '@components/logo';
 import NotFoundImg from '@public/not-found.png';
 
 export default function NotFound() {
@@ -11,12 +11,7 @@ export default function NotFound() {
     <div className="flex min-h-screen flex-col bg-[#F8FAFC]">
       <div className="sticky top-0 z-40 flex justify-center py-5 backdrop-blur-lg lg:backdrop-blur-none xl:py-10">
         <Link href="/">
-          <Image
-            src={siteConfig.logo}
-            alt={siteConfig.title}
-            className="dark:invert"
-            priority
-          />
+          <Logo className="h-8 w-auto" />
         </Link>
       </div>
 

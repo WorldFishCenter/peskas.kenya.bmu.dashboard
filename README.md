@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/images/peskas-logo-dark.svg">
+  <img src=".github/images/peskas-logo.svg" alt="Peskas" height="48">
+</picture>
+
 # Peskas Kenya BMU dashboard
 
 A dashboard that shows fishers and Beach Management Units at study sites on the Kenyan coast their own catch, earnings and fishing data.

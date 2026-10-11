@@ -446,15 +446,18 @@ export default function Header({ lang }: { lang?: string }) {
       className={"z-[990] justify-between 2xl:py-5 2xl:pl-6 3xl:px-8"}
     >
       <div className="hidden items-center gap-3 xl:flex">
+        {/* One link home that reads "Peskas Kenya BMU": the logo, the product name dropped 0.15em
+            onto the wordmark's baseline, and the flag. Spaced tightly enough that the Swahili
+            menu still fits on one line at 1280px. */}
         <LanguageLink
-          aria-label="Site Logo"
           href="/"
-          className="me-4 hidden w-[200px] shrink-0 text-gray-800 hover:text-gray-900 lg:me-5 xl:block"
+          className="me-4 hidden shrink-0 items-center gap-2 xl:flex"
         >
-          <div className="flex items-center gap-2">
-            <Logo className="max-w-[200px]" />
-            <KenyaFlag className="h-6 w-auto" />
-          </div>
+          <Logo className="h-7 w-auto" />
+          <span className="translate-y-[0.15em] text-base font-medium text-gray-500">
+            Kenya BMU
+          </span>
+          <KenyaFlag className="h-4 w-auto" />
         </LanguageLink>
         <HeaderMenuLeft lang={lang} />
       </div>
@@ -464,12 +467,18 @@ export default function Header({ lang }: { lang?: string }) {
             view={<Sidebar className="static w-full 2xl:w-full" lang={lang} />}
             customSize="90%"
           />
+          {/* The same link below xl. Below lg the filters leave no room for the logo and the name
+              (the bar already overflows in Swahili at 360px and 640px), so the mark, 24px tall
+              like the old "PSK", stands alone and the name is only read out. */}
           <LanguageLink
-            aria-label="Site Logo"
             href="/"
-            className="me-2 w-12 sm:me-3 sm:w-12 shrink-0 text-gray-800 hover:text-gray-900 lg:me-5 xl:hidden"
+            className="me-2 flex shrink-0 items-center gap-2 sm:me-3 lg:me-5 xl:hidden"
           >
-            <Logo iconOnly={true} />
+            <Logo className="hidden h-7 w-auto lg:block" />
+            <Logo iconOnly={true} className="h-6 w-auto lg:hidden" />
+            <span className="sr-only text-base font-medium text-gray-500 lg:not-sr-only lg:translate-y-[0.15em]">
+              Kenya BMU
+            </span>
           </LanguageLink>
           {/* Mobile controls */}
           {!isCatchCompositionPage && (
